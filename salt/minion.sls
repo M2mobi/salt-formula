@@ -196,3 +196,24 @@ remove-macpackage-salt:
     - name: /tmp/salt.pkg
     - force: True
     {% endif %}
+
+permissions_minion_config:
+  file.managed:
+    - name: {{ salt_settings.config_path }}/minion
+    - user: root
+    - group: root
+    - mode: 640
+
+permissions_minion.pem:
+  file.managed:
+    - name: {{ salt_settings.config_path }}/pki/minion/minion.pem
+    - user: root
+    - group: root
+    - mode: 400
+
+permissions_minion.pub:
+  file.managed:
+    - name: {{ salt_settings.config_path }}/pki/minion/minion.pub
+    - user: root
+    - group: root
+    - mode: 644
