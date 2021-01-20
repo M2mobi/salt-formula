@@ -24,6 +24,12 @@ salt-master-macos:
       - service: salt-master
     {%- endif %}
 
+salt-master-proctitle:
+  pkg.installed:
+    - name: python36-setproctitle
+    - require_in:
+      - pkg: salt-master
+
 salt-master:
     {% if salt_settings.install_packages %}
   pkg.installed:
